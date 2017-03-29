@@ -127,16 +127,52 @@ function sift()
 			ddd = mi / mind;
 			
 			if ddd < rato
+				
 				pair_pic = [pair_pic, curq];
 				pair_canvas = [pair_canvas, curu];
+				
 			end
 			
 			
 		end
 	end
 	
-	% FINALLY
+	% FINALLY **********
 	
 	% match each pair_pic and pair_canvas index in DESCRIPTOR_PIC.descriptor_position and DESCRIPTOR_CANVAS.descriptor_position
 	
-	% https://github.com/zbqmate
+	% plot
+	
+	[len_pic, wid_pic] = size(pic);
+	%[len_canvas, wid_canvas] = size(canvas);
+	
+	plot_img = [pic, canvas];
+	imshow('plot_img');
+	hold on;
+	
+	[gh, num_pair] = size(pair_pic);
+	
+	for pop = 1 : num_pair
+		
+		idx_pic = pair_pic(pop);
+		idx_canvas = pair_canvas(pop);
+		
+		pst_pic = DESCRIPTOR_PIC.descriptor_position(:, idx_pic);
+		vct_pic = DESCRIPTOR_PIC.descriptor_vct(:, idx_pic);
+		
+		pst_canvas = DESCRIPTOR_CANVAS.descriptor_position(:, idx_canvas);
+		vct_canvas = DESCRIPTOR_CANVAS.descriptor_vct(:, idx_canvas);
+		
+		if pst_pic(1,1) == 1
+			
+			xxx_pic = pst_pic(3,1) / 2;
+			yyy_pic = pst_pic(4,1) / 2;
+			
+			xxx_canvas = pst_canvas(3,1) / 2;
+			yyy_canvas = pst_canvas(4,1) / 2;
+			
+			plot([xxx_pic, yyy_pic], [xxx_canvas, yyy_canvas]);
+			
+		end
+		
+	end
