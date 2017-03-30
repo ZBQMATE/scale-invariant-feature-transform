@@ -163,16 +163,19 @@ function sift()
 		pst_canvas = DESCRIPTOR_CANVAS.descriptor_position(:, idx_canvas);
 		vct_canvas = DESCRIPTOR_CANVAS.descriptor_vct(:, idx_canvas);
 		
-		if pst_pic(1,1) == 1
+		for iii = 1 : num_octave
 			
-			xxx_pic = pst_pic(3,1) / 2;
-			yyy_pic = pst_pic(4,1) / 2;
-			
-			xxx_canvas = pst_canvas(3,1) / 2;
-			yyy_canvas = pst_canvas(4,1) / 2;
-			
-			plot([xxx_pic, yyy_pic], [xxx_canvas, yyy_canvas]);
+			if pst_pic(1,1) == iii
+
+				xxx_pic = pst_pic(3,1) / 2 * 2^(iii-1);
+				yyy_pic = pst_pic(4,1) / 2 * 2^(iii-1);
+
+				xxx_canvas = pst_canvas(3,1) / 2 * 2^(iii-1);
+				yyy_canvas = pst_canvas(4,1) / 2 * 2^(iii-1);
+
+				plot([xxx_pic, yyy_pic], [xxx_canvas, yyy_canvas]);
+
+			end
 			
 		end
-		
 	end
